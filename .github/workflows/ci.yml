@@ -1,0 +1,22 @@
+name: ci
+on:
+  pull_request:
+  merge_group:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sleep 15
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fake test suite
+        run: sleep 60
+      - name: No two services may share a port
+        run: |
+          dupes=$(grep -h '^port=' services/*.conf | sort | uniq -d)
+          if [ -n "$dupes" ]; then echo "port clash: $dupes"; exit 1; fi

@@ -1,0 +1,18 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "Deploying ${{ github.sha }}"
+          git log --oneline -5
+          sleep 45
