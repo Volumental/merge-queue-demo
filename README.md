@@ -5,3 +5,7 @@ check: no two files in `services/` may use the same `port=`.
 
 PRs `add-billing` and `add-search` both claim port 8100. Each passes on its own,
 but the queue tests them together and ejects whichever lands second.
+
+## Try it
+
+Click **Merge when ready** on each PR, then watch https://github.com/Volumental/merge-queue-demo/queue/main
